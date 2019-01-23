@@ -91,6 +91,11 @@
                             <InArgument x:TypeArguments="s:Exception">[Nothing]</InArgument>
                           </Assign.Value>
                         </Assign>
+                        <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="adminEmail" DisplayName="Get Admin Email" sap2010:WorkflowViewState.IdRef="GetRobotAsset_8">
+                          <ui:GetRobotAsset.Value>
+                            <OutArgument x:TypeArguments="x:String">[adminEmail]</OutArgument>
+                          </ui:GetRobotAsset.Value>
+                        </ui:GetRobotAsset>
                         <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="eMail Credential" DisplayName="Get Email Credential" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[emailPW]" Username="[emailUser]" />
                         <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="Shopping Credential" DisplayName="Get Shopping Credential" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[shopPW]" Username="[shopUser]" />
                         <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="First Name" DisplayName="Get First Name" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
@@ -120,7 +125,7 @@
                         </ui:GetRobotAsset>
                         <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="URL" DisplayName="Get URL" sap2010:WorkflowViewState.IdRef="GetRobotAsset_7">
                           <ui:GetRobotAsset.Value>
-                            <OutArgument x:TypeArguments="ui:GenericValue">[url]</OutArgument>
+                            <OutArgument x:TypeArguments="x:String">[url]</OutArgument>
                           </ui:GetRobotAsset.Value>
                         </ui:GetRobotAsset>
                         <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="qName" DisplayName="Get Queue Name" sap2010:WorkflowViewState.IdRef="GetRobotAsset_6">
@@ -138,19 +143,17 @@
                               <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                             </ActivityAction.Argument>
                             <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                              <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'INPUT  user_name'" Text="[shopUser]">
+                              <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text 'INPUT  user_name'" sap2010:WorkflowViewState.IdRef="SetValue_1" Text="[shopUser]">
                                 <ui:SetValue.Target>
                                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d9ae101fefef03df7d05e7990cd8420d" Selector="&lt;webctrl id='user_name' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
                                 </ui:SetValue.Target>
-                                <sap2010:WorkflowViewState.IdRef>SetValue_1</sap2010:WorkflowViewState.IdRef>
                               </ui:SetValue>
-                              <ui:TypeSecureText DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Secure Text 'INPUT  user_pass'" EmptyField="False" SecureText="[shopPW]" SendWindowMessages="False" SimulateType="False">
+                              <ui:TypeSecureText DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Secure Text 'INPUT  user_pass'" EmptyField="False" sap2010:WorkflowViewState.IdRef="TypeSecureText_1" SecureText="[shopPW]" SendWindowMessages="False" SimulateType="False">
                                 <ui:TypeSecureText.Target>
                                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7419ba9683200c35f79eb4270a2a9461" Selector="&lt;webctrl id='user_pass' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
                                 </ui:TypeSecureText.Target>
-                                <sap2010:WorkflowViewState.IdRef>TypeSecureText_1</sap2010:WorkflowViewState.IdRef>
                               </ui:TypeSecureText>
-                              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  login_button'" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  login_button'" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
                                 <ui:Click.CursorPosition>
                                   <ui:CursorPosition Position="Center">
                                     <ui:CursorPosition.OffsetX>
@@ -164,7 +167,6 @@
                                 <ui:Click.Target>
                                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="1f0db3711f495673baafdc601d9dc488" Selector="&lt;webctrl id='login_button' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
                                 </ui:Click.Target>
-                                <sap2010:WorkflowViewState.IdRef>Click_1</sap2010:WorkflowViewState.IdRef>
                               </ui:Click>
                             </Sequence>
                           </ActivityAction>
@@ -206,7 +208,37 @@
                                       <State.Transitions>
                                         <Transition DisplayName="T2" sap2010:WorkflowViewState.IdRef="Transition_22">
                                           <Transition.To>
-                                            <State x:Name="__ReferenceID1" DisplayName="Failure" sap2010:WorkflowViewState.IdRef="State_15" IsFinal="True" />
+                                            <State x:Name="__ReferenceID1" DisplayName="Failure" sap2010:WorkflowViewState.IdRef="State_15" IsFinal="True">
+                                              <State.Entry>
+                                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                                  <Sequence.Variables>
+                                                    <Variable x:TypeArguments="scg:IEnumerable(ui:QueueItem)" Name="qItems" />
+                                                  </Sequence.Variables>
+                                                  <ui:GetQueueItems Duration="{x:Null}" From="{x:Null}" Priority="{x:Null}" Reference="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" To="{x:Null}" Top="{x:Null}" DisplayName="Get Queue Items" FilterStrategy="StartsWith" sap2010:WorkflowViewState.IdRef="GetQueueItems_1" QueueItemStates="InProgress" QueueName="[qName]" Result="[qItems]" />
+                                                  <ui:ForEach x:TypeArguments="ui:QueueItem" CurrentIndex="{x:Null}" DisplayName="For Each" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[qItems]">
+                                                    <ui:ForEach.Body>
+                                                      <ActivityAction x:TypeArguments="ui:QueueItem">
+                                                        <ActivityAction.Argument>
+                                                          <DelegateInArgument x:TypeArguments="ui:QueueItem" Name="item" />
+                                                        </ActivityAction.Argument>
+                                                        <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                                                          <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_1" Reason="[failReason]" Status="Failed" TransactionItem="[item]">
+                                                            <ui:SetTransactionStatus.Output>
+                                                              <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                                            </ui:SetTransactionStatus.Output>
+                                                          </ui:SetTransactionStatus>
+                                                        </Sequence>
+                                                      </ActivityAction>
+                                                    </ui:ForEach.Body>
+                                                  </ui:ForEach>
+                                                  <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Order attempt failed on &quot; + DateTime.Now.ToString(&quot;MMM ddd d HH:mm yyyy&quot;) + &quot;. Full error details follow.&quot; + failReason + &quot;: &quot; + exceptional.ToString]" DisplayName="Send Outlook Mail Message" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="Order Attempt Failed" To="[adminEmail]">
+                                                    <ui:SendOutlookMail.Files>
+                                                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                                    </ui:SendOutlookMail.Files>
+                                                  </ui:SendOutlookMail>
+                                                </Sequence>
+                                              </State.Entry>
+                                            </State>
                                           </Transition.To>
                                         </Transition>
                                         <Transition DisplayName="T8" sap2010:WorkflowViewState.IdRef="Transition_23">
@@ -230,9 +262,6 @@
                 </Transition>
                 <Transition DisplayName="Exception" sap2010:WorkflowViewState.IdRef="Transition_29" To="{x:Reference __ReferenceID1}" Condition="[not exceptional is Nothing]" />
               </State.Transitions>
-              <State.Variables>
-                <Variable x:TypeArguments="s:Exception" Default="[Nothing]" Name="exceptional" />
-              </State.Variables>
             </State>
           </StateMachine.InitialState>
           <x:Reference>__ReferenceID2</x:Reference>
@@ -253,7 +282,10 @@
             <Variable x:TypeArguments="x:String" Name="phoneNum" />
             <Variable x:TypeArguments="njl:JObject" Name="config" />
             <Variable x:TypeArguments="x:String" Name="qName" />
-            <Variable x:TypeArguments="ui:GenericValue" Name="url" />
+            <Variable x:TypeArguments="x:String" Name="url" />
+            <Variable x:TypeArguments="x:String" Name="failReason" />
+            <Variable x:TypeArguments="x:String" Name="adminEmail" />
+            <Variable x:TypeArguments="s:Exception" Default="[Nothing]" Name="exceptional" />
           </StateMachine.Variables>
         </StateMachine>
       </TryCatch.Try>
@@ -268,11 +300,12 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <sads:DebugSymbol.Symbol>d0FDOlxyZXZhdHVyZVxIZXJyb25fUGVyZWlyYV9TeV9Ub3Zhcl9Qcm9qZWN0M1xCb1Byb2plY3QzXE1haW4ueGFtbEZFA5ACDgIBAUYFjgIQAgECSAmCAhgCAQaKAg2KApQBAgEDSg3sARUCARTNASXaAS0CARHFARXkAR0CAQ7JAR3fASUCAQvRAS3RAZ4BAgEJ1gEt1gGeAQIBB4oCe4oCkQECAQTqAUHqAUwCARVMEcABHAIBHMMBfsMBmAECARnnAZEB5wGvAQIBF04VrQEgAgEitQEZvAEiAgEdUheFASICATKGAResASgCASO6AUe6AVICASC3AUi3AVUCAR5WGV0iAgFkXhle6gECAV5fGV/uAQIBWGAZZCwCAVRlGWksAgFQahluLAIBTG8ZcywCAUh0GXgsAgFEeRl9LAIBQH4ZggEsAgE8gwEZgwGmAQIBOIQBGYQB0QECATOGAb4BhgHJAQIBMIYBzgGGAdUBAgEvjAEdqQEoAgEkW0dbUAIBZ1hIWFUCAWVeT15hAgFjXtoBXucBAgFhXsUBXtABAgFfX09fZAIBXV/fAV/rAQIBW1/LAV/VAQIBWWJFYlACAVZgSmBWAgFVZ0VnTwIBUmVKZVUCAVFsRWxQAgFOakpqVwIBTXFFcU0CAUpvSm9UAgFJdkV2TwIBRnRKdFECAUV7THtRAgFCeUp5TwIBQYABRYABTAIBPn5KflECAT2DAWaDAXICATuDATKDAT8CATmEAcEBhAHOAQIBNoQBqwGEAbUBAgE0jQEfkgEtAgErkwEfmAEzAgEnmQEfqAEqAgEljQGjAY0BrwECASyPAbIBjwHgAQIBLpUBsgGVAeABAgEqkwHyAZMB/AECASilAbIBpQHjAQIBJg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0FDOlxyZXZhdHVyZVxIZXJyb25fUGVyZWlyYV9TeV9Ub3Zhcl9Qcm9qZWN0M1xCb1Byb2plY3QzXE1haW4ueGFtbFdFA7ACDgIBAUYFrgIQAgECSAmiAhgCAQaqAg2qApQBAgEDoAI9oAJIAgF+Sg2JAhUCASbPASX6AS0CASPHARWEAh0CASDLAR3/ASUCAR3TAS3xATUCAQn2AS32AZ4BAgEHqgJ7qgKRAQIBBEwRwgEcAgEtxQF+xQGYAQIBKocCkQGHAq8BAgEo1QEx7wE8AgELThWvASACATO3ARm+ASICAS7ZATPZAYUDAgEZ2gEz6QFAAgER6gEz7gFIAgEMUheKASICAUSLAReuASgCATS8AUe8AVICATG5AUi5AVUCAS/ZAecC2QHwAgIBG9kB+ALZAYIDAgEa2gHCAdoBzAECARjgATnmAUQCARLqAYwE6gGaBAIBD+oBqAHqAeoCAgEO6gHyA+oBiAQCAQ1WGV0iAgF6XhliLAIBdmMZY+oBAgFwZBlk7gECAWplGWksAgFmahluLAIBYm8ZcywCAV50GXgsAgFaeRl9LAIBVn4ZggEsAgFSgwEZhwEsAgFOiAEZiAGmAQIBSokBGYkB0QECAUWLAb4BiwHJAQIBQosBzgGLAdUBAgFAkQEdqwEoAgE14QE75QFVAgETW0dbUAIBfVhIWFUCAXtgRWBRAgF4XkpeVgIBd2NPY2ECAXVj2gFj5wECAXNjxQFj0AECAXFkT2RkAgFvZN8BZOsBAgFtZMsBZNUBAgFrZ0VnUAIBaGVKZVYCAWdsRWxPAgFkakpqVQIBY3FFcVACAWBvSm9XAgFfdkV2TQIBXHRKdFQCAVt7RXtPAgFYeUp5UQIBV4ABRYABSgIBVH5Kfk8CAVOFAUWFAUwCAVCDAUqDAVECAU+IAWaIAXICAU2IATKIAT8CAUuJAcEBiQHOAQIBSIkBqwGJAbUBAgFGkgEflgEtAgE8lwEfmwEzAgE4nAEfqgEqAgE24QGcAuEBqgICARbhAcsC4QHTAgIBFJIB0AGSAdwBAgE9lAGyAZQB4AECAT+ZAbIBmQHgAQIBO5cBpQKXAa8CAgE5qAGyAagB4wECATc=</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
       <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="GetRobotAsset_8" sap:VirtualizedContainerService.HintSize="314,22" />
       <sap2010:ViewStateData Id="GetRobotCredential_1" sap:VirtualizedContainerService.HintSize="314,22" />
       <sap2010:ViewStateData Id="GetRobotCredential_2" sap:VirtualizedContainerService.HintSize="314,22" />
       <sap2010:ViewStateData Id="GetRobotAsset_1" sap:VirtualizedContainerService.HintSize="314,22" />
@@ -284,7 +317,7 @@
       <sap2010:ViewStateData Id="GetRobotAsset_6" sap:VirtualizedContainerService.HintSize="314,22" />
       <sap2010:ViewStateData Id="ReadTextFile_1" sap:VirtualizedContainerService.HintSize="314,59" />
       <sap2010:ViewStateData Id="DeserializeJson`1_1" sap:VirtualizedContainerService.HintSize="314,60" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="414,51">
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="336,1003">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -327,7 +360,26 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_15" sap:VirtualizedContainerService.HintSize="114,61">
+      <sap2010:ViewStateData Id="GetQueueItems_1" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="SetTransactionStatus_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="222,146">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="314,280" />
+      <sap2010:ViewStateData Id="SendOutlookMail_1" sap:VirtualizedContainerService.HintSize="314,145" />
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="336,651">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="State_15" sap:VirtualizedContainerService.HintSize="362,764">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">43,209.5</av:Point>
@@ -444,7 +496,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_20" sap:VirtualizedContainerService.HintSize="480,1480">
+      <sap2010:ViewStateData Id="State_20" sap:VirtualizedContainerService.HintSize="114,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">240,32.5</av:Point>

@@ -9,6 +9,7 @@
  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:ss="clr-namespace:System.Security;assembly=mscorlib"
  xmlns:ui="http://schemas.uipath.com/workflow/activities"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
@@ -65,8 +66,29 @@
         <StateMachine DisplayName="State Machine" sap2010:WorkflowViewState.IdRef="StateMachine_3">
           <StateMachine.InitialState>
             <State x:Name="__ReferenceID2" DisplayName="Initialize" sap2010:WorkflowViewState.IdRef="State_20">
+              <State.Entry>
+                <TryCatch DisplayName="Try Catch" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                  <TryCatch.Try>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="ss:SecureString" Name="emailPW" />
+                        <Variable x:TypeArguments="x:String" Name="emailUser" />
+                        <Variable x:TypeArguments="ss:SecureString" Name="shopPW" />
+                        <Variable x:TypeArguments="x:String" Name="shopUser" />
+                      </Sequence.Variables>
+                      <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="eMail Credential" DisplayName="Get Email Credential" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[emailPW]" Username="[emailUser]" />
+                      <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="Shopping Credential" DisplayName="Get Shopping Credential" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[shopPW]" Username="[shopUser]" />
+                      <ui:GetRobotAsset AssetName="{x:Null}" TimeoutMS="{x:Null}" Value="{x:Null}" DisplayName="Get First Name" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1" />
+                      <ui:GetRobotAsset AssetName="{x:Null}" TimeoutMS="{x:Null}" Value="{x:Null}" DisplayName="Get Last Name" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2" />
+                      <ui:GetRobotAsset AssetName="{x:Null}" TimeoutMS="{x:Null}" Value="{x:Null}" DisplayName="Get Street" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3" />
+                      <ui:GetRobotAsset AssetName="{x:Null}" TimeoutMS="{x:Null}" Value="{x:Null}" DisplayName="Get Zip" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4" />
+                      <ui:GetRobotAsset AssetName="{x:Null}" TimeoutMS="{x:Null}" Value="{x:Null}" DisplayName="Get Phone" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5" />
+                    </Sequence>
+                  </TryCatch.Try>
+                </TryCatch>
+              </State.Entry>
               <State.Transitions>
-                <Transition DisplayName="T1" sap2010:WorkflowViewState.IdRef="Transition_28">
+                <Transition DisplayName="Successfully Initialized" sap2010:WorkflowViewState.IdRef="Transition_28">
                   <Transition.To>
                     <State x:Name="__ReferenceID0" DisplayName="Load Cart" sap2010:WorkflowViewState.IdRef="State_19">
                       <State.Transitions>
@@ -102,7 +124,7 @@
                     </State>
                   </Transition.To>
                 </Transition>
-                <Transition DisplayName="T6" sap2010:WorkflowViewState.IdRef="Transition_29" To="{x:Reference __ReferenceID1}" />
+                <Transition DisplayName="Exception" sap2010:WorkflowViewState.IdRef="Transition_29" To="{x:Reference __ReferenceID1}" />
               </State.Transitions>
             </State>
           </StateMachine.InitialState>
@@ -125,10 +147,25 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <sads:DebugSymbol.Symbol>d0FDOlxyZXZhdHVyZVxIZXJyb25fUGVyZWlyYV9TeV9Ub3Zhcl9Qcm9qZWN0M1xCb1Byb2plY3QzXE1haW4ueGFtbAs+A4EBDgIBAT8FfxACAQJBCXMYAgEGew17lAECAQNDDWsVAgEUTyVcLQIBEUcVZh0CAQ5LHWElAgELUy1TngECAQlYLVieAQIBB3t7e5EBAgEE</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0FDOlxyZXZhdHVyZVxIZXJyb25fUGVyZWlyYV9TeV9Ub3Zhcl9Qcm9qZWN0M1xCb1Byb2plY3QzXE1haW4ueGFtbBo/A5cBDgIBAUAFlQEQAgECQgmJARgCAQaRAQ2RAZQBAgEDRA2BARUCARRlJXItAgERXRV8HQIBDmEddyUCAQtpLWmeAQIBCW4tbp4BAgEHkQF7kQGRAQIBBEYRWBwCARdIFVYgAgEYTxdP6AECASRQF1DsAQIBHlEXUbUBAgEdUhdStAECARxTF1OxAQIBG1QXVK4BAgEaVRdVsAECARlPTU9fAgEpT9gBT+UBAgEnT8MBT84BAgElUE1QYgIBI1DdAVDpAQIBIVDJAVDTAQIBHw==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="GetRobotCredential_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="GetRobotCredential_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="GetRobotAsset_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="GetRobotAsset_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="GetRobotAsset_3" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="GetRobotAsset_4" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="GetRobotAsset_5" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="222,518">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_3" sap:VirtualizedContainerService.HintSize="418,723" />
       <sap2010:ViewStateData Id="State_15" sap:VirtualizedContainerService.HintSize="114,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -141,7 +178,7 @@
       <sap2010:ViewStateData Id="Transition_22">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:PointCollection x:Key="ConnectorLocation">223,336.95 94.3,336.95 94.3,270.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">223,486.95 94.3,486.95 94.3,270.5</av:PointCollection>
             <x:Int32 x:Key="SrcConnectionPointIndex">33</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">35</x:Int32>
           </scg:Dictionary>
@@ -150,7 +187,7 @@
       <sap2010:ViewStateData Id="State_16" sap:VirtualizedContainerService.HintSize="114,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">480,292.5</av:Point>
+            <av:Point x:Key="ShapeLocation">473,439.5</av:Point>
             <av:Size x:Key="ShapeSize">114,61</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
@@ -159,7 +196,7 @@
       <sap2010:ViewStateData Id="Transition_23">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:PointCollection x:Key="ConnectorLocation">337,340 367,340 367,329.1 480,329.1</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">337,490 367,490 367,476.1 473,476.1</av:PointCollection>
             <x:Int32 x:Key="SrcConnectionPointIndex">36</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">45</x:Int32>
           </scg:Dictionary>
@@ -168,7 +205,7 @@
       <sap2010:ViewStateData Id="State_17" sap:VirtualizedContainerService.HintSize="114,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">223,309.5</av:Point>
+            <av:Point x:Key="ShapeLocation">223,459.5</av:Point>
             <av:Size x:Key="ShapeSize">114,61</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
@@ -179,14 +216,14 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">42</x:Int32>
-            <av:PointCollection x:Key="ConnectorLocation">280,290.5 280,309.5 285.7,309.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">280,360.5 280,390.5 285.7,390.5 285.7,459.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Transition_25">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:PointCollection x:Key="ConnectorLocation">337,253.9 367,253.9 367,170.95 354,170.95</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">337,323.9 367,323.9 367,170.95 354,170.95</av:PointCollection>
             <x:Int32 x:Key="SrcConnectionPointIndex">28</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">32</x:Int32>
           </scg:Dictionary>
@@ -195,7 +232,7 @@
       <sap2010:ViewStateData Id="State_18" sap:VirtualizedContainerService.HintSize="114,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">223,229.5</av:Point>
+            <av:Point x:Key="ShapeLocation">223,299.5</av:Point>
             <av:Size x:Key="ShapeSize">114,61</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
@@ -206,7 +243,7 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Int32 x:Key="SrcConnectionPointIndex">47</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">38</x:Int32>
-            <av:PointCollection x:Key="ConnectorLocation">308.4,204.5 280,204.5 280,229.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">308.4,204.5 308.4,234.5 280,234.5 280,299.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -228,7 +265,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_28">
+      <sap2010:ViewStateData Id="Transition_28" sap:VirtualizedContainerService.HintSize="430,505">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">297,93.5 297,143.5</av:PointCollection>
@@ -237,7 +274,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_29">
+      <sap2010:ViewStateData Id="Transition_29" sap:VirtualizedContainerService.HintSize="430,505">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">240,75.2 100,75.2 100,209.5</av:PointCollection>
@@ -246,7 +283,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_20" sap:VirtualizedContainerService.HintSize="114,61">
+      <sap2010:ViewStateData Id="State_20" sap:VirtualizedContainerService.HintSize="444,1112">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">240,32.5</av:Point>
@@ -255,7 +292,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="StateMachine_3" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="StateMachine_3" sap:VirtualizedContainerService.HintSize="614,636">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>

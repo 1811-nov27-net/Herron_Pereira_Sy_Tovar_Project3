@@ -976,14 +976,14 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\heatw\\.nuget\\packages\\": {}
+    "C:\\Users\\Axel\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "BoProject3",
       "projectName": "BoProject3",
       "projectPath": "C:\\revature\\Herron_Pereira_Sy_Tovar_Project3\\BoProject3\\.local",
-      "packagesPath": "C:\\Users\\heatw\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Axel\\.nuget\\packages\\",
       "outputPath": "C:\\revature\\Herron_Pereira_Sy_Tovar_Project3\\BoProject3\\.local"
     },
     "frameworks": {

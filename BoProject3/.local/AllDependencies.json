@@ -666,6 +666,7 @@
       "type": "package",
       "path": "newtonsoft.json/10.0.3",
       "files": [
+        ".nupkg.metadata",
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
@@ -976,25 +977,15 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\Axel\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\Rogerio\\.nuget\\packages\\": {}
->>>>>>> 2d6cee54ccdec3e0ba7b4b6fc228381f9233a32c
   },
   "project": {
     "restore": {
       "projectUniqueName": "BoProject3",
       "projectName": "BoProject3",
-<<<<<<< HEAD
       "projectPath": "C:\\revature\\Herron_Pereira_Sy_Tovar_Project3\\BoProject3\\.local",
       "packagesPath": "C:\\Users\\Axel\\.nuget\\packages\\",
       "outputPath": "C:\\revature\\Herron_Pereira_Sy_Tovar_Project3\\BoProject3\\.local"
-=======
-      "projectPath": "C:\\Revature\\Projects\\Project3\\BoProject3\\.local",
-      "packagesPath": "C:\\Users\\Rogerio\\.nuget\\packages\\",
-      "outputPath": "C:\\Revature\\Projects\\Project3\\BoProject3\\.local"
->>>>>>> 2d6cee54ccdec3e0ba7b4b6fc228381f9233a32c
     },
     "frameworks": {
       "net461": {
@@ -1022,5 +1013,13 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\revature\\Herron_Pereira_Sy_Tovar_Project3\\BoProject3\\.local\\nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

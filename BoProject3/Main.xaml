@@ -55,15 +55,43 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
     <StateMachine DisplayName="State Machine" sap2010:WorkflowViewState.IdRef="StateMachine_1">
-      <State DisplayName="Initialize" sap2010:WorkflowViewState.IdRef="State_1" />
+      <State DisplayName="Initialize" sap2010:WorkflowViewState.IdRef="State_1">
+        <State.Transitions>
+          <Transition DisplayName="T1">
+            <Transition.To>
+              <State x:Name="__ReferenceID0" DisplayName="Load Cart" sap2010:WorkflowViewState.IdRef="State_5" />
+            </Transition.To>
+            <sap2010:WorkflowViewState.IdRef>Transition_1</sap2010:WorkflowViewState.IdRef>
+          </Transition>
+        </State.Transitions>
+      </State>
       <State DisplayName="Fail" sap2010:WorkflowViewState.IdRef="State_2" />
       <State DisplayName="Order" sap2010:WorkflowViewState.IdRef="State_3" />
       <State DisplayName="Success" sap2010:WorkflowViewState.IdRef="State_4" />
+      <x:Reference>__ReferenceID0</x:Reference>
     </StateMachine>
-    <sads:DebugSymbol.Symbol>d0FDOlxyZXZhdHVyZVxIZXJyb25fUGVyZWlyYV9TeV9Ub3Zhcl9Qcm9qZWN0M1xCb1Byb2plY3QzXE1haW4ueGFtbAI4A0AOAgEBOQU+FAIBAg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0FDOlxyZXZhdHVyZVxIZXJyb25fUGVyZWlyYV9TeV9Ub3Zhcl9Qcm9qZWN0M1xCb1Byb2plY3QzXE1haW4ueGFtbAI4A0oOAgEBOQVIFAIBAg==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="State_5" sap:VirtualizedContainerService.HintSize="114,61">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">240,143.5</av:Point>
+            <av:Size x:Key="ShapeSize">114,61</av:Size>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Transition_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:PointCollection x:Key="ConnectorLocation">297,93.5 297,143.5</av:PointCollection>
+            <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
+            <x:Int32 x:Key="DestConnectionPointIndex">38</x:Int32>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="State_1" sap:VirtualizedContainerService.HintSize="114,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -76,7 +104,7 @@
       <sap2010:ViewStateData Id="State_2" sap:VirtualizedContainerService.HintSize="114,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">80,182.5</av:Point>
+            <av:Point x:Key="ShapeLocation">53,179.5</av:Point>
             <av:Size x:Key="ShapeSize">114,61</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
@@ -85,7 +113,7 @@
       <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="114,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">250,192.5</av:Point>
+            <av:Point x:Key="ShapeLocation">263,239.5</av:Point>
             <av:Size x:Key="ShapeSize">114,61</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
@@ -94,7 +122,7 @@
       <sap2010:ViewStateData Id="State_4" sap:VirtualizedContainerService.HintSize="114,61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">320,282.5</av:Point>
+            <av:Point x:Key="ShapeLocation">373,319.5</av:Point>
             <av:Size x:Key="ShapeSize">114,61</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>

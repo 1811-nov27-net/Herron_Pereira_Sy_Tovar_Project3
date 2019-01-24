@@ -164,6 +164,7 @@
                                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="bb706235f97432656e7e2c6ed885070f" Selector="&lt;webctrl parentid='cart_menu' tag='IMG' /&gt;" WaitForReady="COMPLETE" />
                                 </ui:Click.Target>
                               </ui:Click>
+                              <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap2010:WorkflowViewState.IdRef="CloseTab_2" />
                             </Sequence>
                           </ActivityAction>
                         </ui:BrowserScope.Body>
@@ -179,11 +180,10 @@
                               </ActivityAction.Argument>
                               <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_7">
                                 <ui:SetTransactionProgress TimeoutMS="{x:Null}" DisplayName="Set Transaction Progress" sap2010:WorkflowViewState.IdRef="SetTransactionProgress_1" Progress="Processed" TransactionItem="[transaction]" />
-                                <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" Status="Successful" TransactionItem="[transaction]">
+                                <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_1" Status="Successful" TransactionItem="[transaction]">
                                   <ui:SetTransactionStatus.Output>
                                     <scg:Dictionary x:TypeArguments="x:String, InArgument" />
                                   </ui:SetTransactionStatus.Output>
-                                  <sap2010:WorkflowViewState.IdRef>SetTransactionStatus_1</sap2010:WorkflowViewState.IdRef>
                                 </ui:SetTransactionStatus>
                               </Sequence>
                             </ActivityAction>
@@ -204,7 +204,7 @@
     <x:Reference>__ReferenceID2</x:Reference>
     <x:Reference>__ReferenceID3</x:Reference>
     <x:Reference>__ReferenceID4</x:Reference>
-    <sads:DebugSymbol.Symbol>dzxDOlxSZXZhdHVyZVxQcm9qZWN0c1xQcm9qZWN0M1xCb1Byb2plY3QzXFRlc3RQb3N0VG9DYXJ0LnhhbWw+OwPQAQ8CAQFBCVMUAgEzVg2KARgCARqNARGUASkCARSXARWrASACAQyuARm/ASYCAQJCC0odAgE6SwtSHQIBNFcPiQEgAgEbkAFJkAFOAgEZkQFNkQFSAgEYjwFOjwFaAgEXkgFgkgFyAgEWjQG9AY0BzgECARWYAReqASkCAQ2uAagBrgG8AQIBC7QBH7wBKgIBA0K0AULCAQIBQEVIRUoCAT9IS0hWAgE+R0tHVAIBPURNRFECATxGTkZPAgE7S68BS70BAgE5TkhOSQIBOFBLUFQCATdNTU1RAgE2T05PTwIBNVfgAVeEAgIBMl0VhgEgAgEcmAGuApgB+QICAROeAR2nASgCAQ61ASG1AeoBAgEHtgEhuwE7AgEEXhdiJQIBL2MXbCICASttF21eAgEpbhd1IgIBJXYXfSICASF+F4UBIgIBHZ8BH6YBKgIBD7UBvAG1AccBAgEKtQHYAbUB5wECAQi2AfgBtgGHAgIBBWCqAWDYAQIBMV6yAl65AgIBMGcZaycCASxtJ20xAgEqc6oBc9sBAgEocENwRwIBJ3A2cDoCASZ7qgF7ngICASR4Q3hGAgEjeDZ4OgIBIoMBqgGDAbICAgEggAFDgAFHAgEfgAE2gAE6AgEepAGyAaQB5AECARKhAUuhAU8CARGhAT6hAUICARBprAFp2gECAS5nswJnugICAS0=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzxDOlxSZXZhdHVyZVxQcm9qZWN0c1xQcm9qZWN0M1xCb1Byb2plY3QzXFRlc3RQb3N0VG9DYXJ0LnhhbWw/OwPQAQ8CAQFBCVMUAgE0Vg2KARgCARuNARGUASkCARWXARWsASACAQyvARm/ASYCAQJCC0odAgE7SwtSHQIBNVcPiQEgAgEckAFJkAFOAgEakQFNkQFSAgEZjwFOjwFaAgEYkgFgkgFyAgEXjQG9AY0BzgECARaYARerASkCAQ2vAagBrwG8AQIBC7UBH7wBKgIBA0K0AULCAQIBQUVIRUoCAUBIS0hWAgE/R0tHVAIBPkRNRFECAT1GTkZPAgE8S68BS70BAgE6TkhOSQIBOVBLUFQCAThNTU1RAgE3T05PTwIBNlfgAVeEAgIBM10VhgEgAgEdmAGuApgB+QICARSeAR2oASgCAQ62ASG2AeoBAgEHtwEhuwE7AgEEXhdiJQIBMGMXbCICASxtF21eAgEqbhd1IgIBJnYXfSICASJ+F4UBIgIBHp8BH6YBKgIBEKcBH6cBhgECAQ+2AbwBtgHHAQIBCrYB2AG2AecBAgEItwGxArcBwAICAQVgqgFg2AECATJesgJeuQICATFnGWsnAgEtbSdtMQIBK3OqAXPbAQIBKXBDcEcCAShwNnA6AgEne6oBe54CAgEleEN4RgIBJHg2eDoCASODAaoBgwGyAgIBIYABQ4ABRwIBIIABNoABOgIBH6QBsgGkAeQBAgEToQFLoQFPAgESoQE+oQFCAgERaawBadoBAgEvZ7MCZ7oCAgEu</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -253,15 +253,16 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Click_2" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="336,230">
+      <sap2010:ViewStateData Id="CloseTab_2" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="336,292">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_1" sap:VirtualizedContainerService.HintSize="414,376" />
-      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="BrowserScope_1" sap:VirtualizedContainerService.HintSize="414,438" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="436,562">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -277,7 +278,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="287,342" />
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="200,51" />
       <sap2010:ViewStateData Id="FlowStep_5">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">

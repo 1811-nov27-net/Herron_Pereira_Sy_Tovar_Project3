@@ -473,6 +473,15 @@
             "locale": "ru"
           }
         }
+      },
+      "VVaidya.DatatableToHTML.Activities/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/_._": {}
+        },
+        "runtime": {
+          "lib/DataTableToHtmlTable.dll": {}
+        }
       }
     }
   },
@@ -1055,6 +1064,17 @@
         "uipath.webapi.activities.1.3.0.nupkg.sha512",
         "uipath.webapi.activities.nuspec"
       ]
+    },
+    "VVaidya.DatatableToHTML.Activities/2.1.0": {
+      "sha512": "t0v8feKyw4egiZ0l1YJdeeRHRv/YatGyBe5D5BD2ZvZsSl+GC2KayTkTYIrEDNwkIhxdn9V5fXfwSroj98T/8g==",
+      "type": "package",
+      "path": "vvaidya.datatabletohtml.activities/2.1.0",
+      "files": [
+        "lib/DataTableToHtmlTable.dll",
+        "lib/DataTableToHtmlTable.pdb",
+        "vvaidya.datatabletohtml.activities.2.1.0.nupkg.sha512",
+        "vvaidya.datatabletohtml.activities.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -1064,27 +1084,20 @@
       "UiPath.Mail.Activities >= 1.3.0 <= 1.3.0",
       "UiPath.System.Activities >= 18.4.2 <= 18.4.2",
       "UiPath.UIAutomation.Activities >= 18.4.3 <= 18.4.3",
-      "UiPath.WebAPI.Activities >= 1.3.0 <= 1.3.0"
+      "UiPath.WebAPI.Activities >= 1.3.0 <= 1.3.0",
+      "VVaidya.DatatableToHTML.Activities >= 2.1.0 <= 2.1.0"
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\Axel\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\heatw\\.nuget\\packages\\": {}
->>>>>>> d5656c83fb084c5fedfceb667ca3c9060d5a02a7
+    "C:\\Users\\Justin\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "BoProject3",
-      "projectName": "BoProject3",
-      "projectPath": "C:\\revature\\Herron_Pereira_Sy_Tovar_Project3\\BoProject3\\.local",
-<<<<<<< HEAD
-      "packagesPath": "C:\\Users\\Axel\\.nuget\\packages\\",
-=======
-      "packagesPath": "C:\\Users\\heatw\\.nuget\\packages\\",
->>>>>>> d5656c83fb084c5fedfceb667ca3c9060d5a02a7
-      "outputPath": "C:\\revature\\Herron_Pereira_Sy_Tovar_Project3\\BoProject3\\.local"
+      "projectUniqueName": "UiPath_REFrameWork",
+      "projectName": "UiPath_REFrameWork",
+      "projectPath": "E:\\Stuff\\Revature\\Herron_Pereira_Sy_Tovar_Project3\\BoProject3\\.local",
+      "packagesPath": "C:\\Users\\Justin\\.nuget\\packages\\",
+      "outputPath": "E:\\Stuff\\Revature\\Herron_Pereira_Sy_Tovar_Project3\\BoProject3\\.local"
     },
     "frameworks": {
       "net461": {
@@ -1113,17 +1126,14 @@
             "include": "Runtime",
             "target": "Package",
             "version": "[1.3.0, 1.3.0]"
+          },
+          "VVaidya.DatatableToHTML.Activities": {
+            "include": "Runtime",
+            "target": "Package",
+            "version": "[2.1.0, 2.1.0]"
           }
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\revature\\Herron_Pereira_Sy_Tovar_Project3\\BoProject3\\.local\\nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

@@ -61,28 +61,14 @@
       <Variable x:TypeArguments="scg:List(ui:QueueItem)" Name="transactionsList" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
-      <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
-        <Sequence DisplayName="Add items to queue" sap2010:WorkflowViewState.IdRef="Sequence_1">
-          <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="IpohCaffe" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="Project3Test">
-            <ui:AddQueueItem.ItemInformation>
-              <InArgument x:TypeArguments="x:Int32" x:Key="total_inventory">1496</InArgument>
-              <InArgument x:TypeArguments="x:Int32" x:Key="product_id">43</InArgument>
-              <InArgument x:TypeArguments="x:Int32" x:Key="product_quantity">5</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="product_type">Beverages</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="product_name">Ipoh Coffee</InArgument>
-            </ui:AddQueueItem.ItemInformation>
-          </ui:AddQueueItem>
-          <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Chai" sap2010:WorkflowViewState.IdRef="AddQueueItem_2" Priority="Normal" QueueType="Project3Test">
-            <ui:AddQueueItem.ItemInformation>
-              <InArgument x:TypeArguments="x:Int32" x:Key="total_inventory">1980</InArgument>
-              <InArgument x:TypeArguments="x:Int32" x:Key="product_id">1</InArgument>
-              <InArgument x:TypeArguments="x:Int32" x:Key="product_quantity">3</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="product_type">Beverages</InArgument>
-            </ui:AddQueueItem.ItemInformation>
-          </ui:AddQueueItem>
-        </Sequence>
+      <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_6">
+        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke ReadingAndScrapingData workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="ReadingAndScrapingData.xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <scg:Dictionary x:TypeArguments="x:String, Argument" />
+          </ui:InvokeWorkflowFile.Arguments>
+        </ui:InvokeWorkflowFile>
         <FlowStep.Next>
-          <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+          <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_2">
             <Sequence DisplayName="Login" sap2010:WorkflowViewState.IdRef="Sequence_2">
               <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Open http://training.openspan.com/login" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" Url="http://training.openspan.com/login">
                 <ui:OpenBrowser.Body>
@@ -137,17 +123,17 @@
               </ui:OpenBrowser>
             </Sequence>
             <FlowStep.Next>
-              <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_3">
-                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="PostToCart.xaml">
+              <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_3">
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke PostToCart" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="PostToCart.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="x:String" x:Key="queueName">Project3Test</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="queueName">Project3Queue</InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="user">admin</InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="password">admin</InArgument>
                     <OutArgument x:TypeArguments="scg:List(ui:QueueItem)" x:Key="transactions">[transactionsList]</OutArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
                 <FlowStep.Next>
-                  <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_4">
+                  <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_4">
                     <Sequence DisplayName="refresh page" sap2010:WorkflowViewState.IdRef="Sequence_5">
                       <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'HomePegaS Page'" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="8a48d7b2c7cff6858f1b5596290066da" Selector="&lt;html title='Quick Order | Pega Studio Training Web Application' /&gt;">
                         <ui:BrowserScope.Body>
@@ -164,14 +150,13 @@
                                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="bb706235f97432656e7e2c6ed885070f" Selector="&lt;webctrl parentid='cart_menu' tag='IMG' /&gt;" WaitForReady="COMPLETE" />
                                 </ui:Click.Target>
                               </ui:Click>
-                              <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap2010:WorkflowViewState.IdRef="CloseTab_2" />
                             </Sequence>
                           </ActivityAction>
                         </ui:BrowserScope.Body>
                       </ui:BrowserScope>
                     </Sequence>
                     <FlowStep.Next>
-                      <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_5">
+                      <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_5">
                         <ui:ForEach x:TypeArguments="ui:QueueItem" CurrentIndex="{x:Null}" DisplayName="For Each" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[transactionsList]">
                           <ui:ForEach.Body>
                             <ActivityAction x:TypeArguments="ui:QueueItem">
@@ -204,13 +189,11 @@
     <x:Reference>__ReferenceID2</x:Reference>
     <x:Reference>__ReferenceID3</x:Reference>
     <x:Reference>__ReferenceID4</x:Reference>
-    <sads:DebugSymbol.Symbol>dzxDOlxSZXZhdHVyZVxQcm9qZWN0c1xQcm9qZWN0M1xCb1Byb2plY3QzXFRlc3RQb3N0VG9DYXJ0LnhhbWw/OwPQAQ8CAQFBCVMUAgE0Vg2KARgCARuNARGUASkCARWXARWsASACAQyvARm/ASYCAQJCC0odAgE7SwtSHQIBNVcPiQEgAgEckAFJkAFOAgEakQFNkQFSAgEZjwFOjwFaAgEYkgFgkgFyAgEXjQG9AY0BzgECARaYARerASkCAQ2vAagBrwG8AQIBC7UBH7wBKgIBA0K0AULCAQIBQUVIRUoCAUBIS0hWAgE/R0tHVAIBPkRNRFECAT1GTkZPAgE8S68BS70BAgE6TkhOSQIBOVBLUFQCAThNTU1RAgE3T05PTwIBNlfgAVeEAgIBM10VhgEgAgEdmAGuApgB+QICARSeAR2oASgCAQ62ASG2AeoBAgEHtwEhuwE7AgEEXhdiJQIBMGMXbCICASxtF21eAgEqbhd1IgIBJnYXfSICASJ+F4UBIgIBHp8BH6YBKgIBEKcBH6cBhgECAQ+2AbwBtgHHAQIBCrYB2AG2AecBAgEItwGxArcBwAICAQVgqgFg2AECATJesgJeuQICATFnGWsnAgEtbSdtMQIBK3OqAXPbAQIBKXBDcEcCAShwNnA6AgEne6oBe54CAgEleEN4RgIBJHg2eDoCASODAaoBgwGyAgIBIYABQ4ABRwIBIIABNoABOgIBH6QBsgGkAeQBAgEToQFLoQFPAgESoQE+oQFCAgERaawBadoBAgEvZ7MCZ7oCAgEu</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzxDOlxSZXZhdHVyZVxQcm9qZWN0c1xQcm9qZWN0M1xCb1Byb2plY3QzXFRlc3RQb3N0VG9DYXJ0LnhhbWwyOwPBAQ8CAQFBCUUhAgEzSA18GAIBGn8RhgEpAgEUiQEVnQEgAgEMoAEZsAEmAgECQccBQeQBAgE0SQ97IAIBG4IBSYIBTgIBGYMBTYMBUgIBGIEBToEBWwIBF4QBYIQBcgIBFn+6AX/LAQIBFYoBF5wBKQIBDaABqAGgAbwBAgELpgEfrQEqAgEDSeABSYQCAgEyTxV4IAIBHIoBrgKKAfkCAgETkAEdmQEoAgEOpwEhpwHqAQIBB6gBIawBOwIBBFAXVCUCAS9VF14iAgErXxdfXgIBKWAXZyICASVoF28iAgEhcBd3IgIBHZEBH5gBKgIBD6cBvAGnAccBAgEKpwHYAacB5wECAQioAbECqAHAAgIBBVKqAVLYAQIBMVCyAlC5AgIBMFkZXScCASxfJ18xAgEqZaoBZdsBAgEoYkNiRwIBJ2I2YjoCASZtqgFtngICASRqQ2pGAgEjajZqOgIBInWqAXWyAgIBIHJDckcCAR9yNnI6AgEelgGyAZYB5AECARKTAUuTAU8CARGTAT6TAUICARBbrAFb2gECAS5ZswJZugICAS0=</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="AddQueueItem_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="AddQueueItem_2" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_2" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -245,7 +228,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="314,87">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -253,16 +236,15 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Click_2" sap:VirtualizedContainerService.HintSize="314,106" />
-      <sap2010:ViewStateData Id="CloseTab_2" sap:VirtualizedContainerService.HintSize="314,22" />
-      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="336,292">
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="336,230">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="BrowserScope_1" sap:VirtualizedContainerService.HintSize="414,438" />
-      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="436,562">
+      <sap2010:ViewStateData Id="BrowserScope_1" sap:VirtualizedContainerService.HintSize="414,376" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -314,12 +296,12 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_1">
+      <sap2010:ViewStateData Id="FlowStep_6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">10,64.5</av:Point>
+            <av:Point x:Key="ShapeLocation">10,74.5</av:Point>
             <av:Size x:Key="ShapeSize">200,51</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">110,115.5 110,174.5</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">110,125.5 110,174.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -329,7 +311,7 @@
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
             <av:Size x:Key="ShapeSize">60,75</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">270,40 240,40 240,90 210,90</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">270,40 110,40 110,74.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>

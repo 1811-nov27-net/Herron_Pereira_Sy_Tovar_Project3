@@ -71,6 +71,7 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
@@ -86,15 +87,14 @@
       <Variable x:TypeArguments="x:String" Name="product_name" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
-      <FlowStep x:Name="__ReferenceID9">
-        <Assign>
+      <FlowStep x:Name="__ReferenceID9" sap2010:WorkflowViewState.IdRef="FlowStep_14">
+        <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
           <Assign.To>
             <OutArgument x:TypeArguments="scg:List(ui:QueueItem)">[transactions]</OutArgument>
           </Assign.To>
           <Assign.Value>
             <InArgument x:TypeArguments="scg:List(ui:QueueItem)">[new List(of UiPath.Core.QueueItem)]</InArgument>
           </Assign.Value>
-          <sap2010:WorkflowViewState.IdRef>Assign_11</sap2010:WorkflowViewState.IdRef>
         </Assign>
         <FlowStep.Next>
           <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_8">
@@ -134,7 +134,7 @@
                                   <OutArgument x:TypeArguments="x:String">[product_name]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:String">[transactionItem.SpecificContent("product_name").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String">[transactionItem.SpecificContent("productName").ToString]</InArgument>
                                 </Assign.Value>
                               </Assign>
                             </TryCatch.Try>
@@ -149,50 +149,6 @@
                               </Catch>
                             </TryCatch.Catches>
                           </TryCatch>
-                          <TryCatch DisplayName="Try Catch (total_inventory)" sap2010:WorkflowViewState.IdRef="TryCatch_2">
-                            <TryCatch.Try>
-                              <Assign DisplayName="total_inventory" sap2010:WorkflowViewState.IdRef="Assign_1">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="x:Int32">[total_inventory]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="x:Int32">[CInt(transactionItem.SpecificContent("total_inventory").ToString)]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                            </TryCatch.Try>
-                            <TryCatch.Catches>
-                              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_2">
-                                <ActivityAction x:TypeArguments="s:Exception">
-                                  <ActivityAction.Argument>
-                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                                  </ActivityAction.Argument>
-                                  <ui:LogMessage DisplayName="Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Error" Message="[&quot;Fail to retrieve total_inventory from Transaction Item&quot;]" />
-                                </ActivityAction>
-                              </Catch>
-                            </TryCatch.Catches>
-                          </TryCatch>
-                          <TryCatch DisplayName="Try Catch (product_id)" sap2010:WorkflowViewState.IdRef="TryCatch_3">
-                            <TryCatch.Try>
-                              <Assign DisplayName="product_id" sap2010:WorkflowViewState.IdRef="Assign_6">
-                                <Assign.To>
-                                  <OutArgument x:TypeArguments="x:Int32">[product_id]</OutArgument>
-                                </Assign.To>
-                                <Assign.Value>
-                                  <InArgument x:TypeArguments="x:Int32">[CInt(transactionItem.SpecificContent("product_id").ToString)]</InArgument>
-                                </Assign.Value>
-                              </Assign>
-                            </TryCatch.Try>
-                            <TryCatch.Catches>
-                              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_3">
-                                <ActivityAction x:TypeArguments="s:Exception">
-                                  <ActivityAction.Argument>
-                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                                  </ActivityAction.Argument>
-                                  <ui:LogMessage DisplayName="Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Error" Message="[&quot;Fail to retrieve product_id from Transaction Item&quot;]" />
-                                </ActivityAction>
-                              </Catch>
-                            </TryCatch.Catches>
-                          </TryCatch>
                           <TryCatch DisplayName="Try Catch (product_quantity)" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                             <TryCatch.Try>
                               <Assign DisplayName="product_quantity" sap2010:WorkflowViewState.IdRef="Assign_7">
@@ -200,7 +156,7 @@
                                   <OutArgument x:TypeArguments="x:Int32">[product_quantity]</OutArgument>
                                 </Assign.To>
                                 <Assign.Value>
-                                  <InArgument x:TypeArguments="x:Int32">[CInt(transactionItem.SpecificContent("product_quantity").ToString)]</InArgument>
+                                  <InArgument x:TypeArguments="x:Int32">[CInt(transactionItem.SpecificContent("quantity").ToString)]</InArgument>
                                 </Assign.Value>
                               </Assign>
                             </TryCatch.Try>
@@ -215,38 +171,24 @@
                               </Catch>
                             </TryCatch.Catches>
                           </TryCatch>
-                          <TryCatch DisplayName="Try Catch (product_type)" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                          <TryCatch DisplayName="Try Catch (product_id)" sap2010:WorkflowViewState.IdRef="TryCatch_7">
                             <TryCatch.Try>
-                              <If Condition="[transactionItem.SpecificContent(&quot;product_type&quot;).ToString = &quot;Beverages&quot;]" DisplayName="product_type" sap2010:WorkflowViewState.IdRef="If_2">
-                                <If.Then>
-                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="x:Int32">[product_type]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="x:Int32">1</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Then>
-                                <If.Else>
-                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="x:Int32">[product_type]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="x:Int32">2</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
+                              <Assign DisplayName="product_name" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Int32">[product_id]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Int32">[CInt(transactionItem.SpecificContent("id").ToString)]</InArgument>
+                                </Assign.Value>
+                              </Assign>
                             </TryCatch.Try>
                             <TryCatch.Catches>
-                              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_7">
                                 <ActivityAction x:TypeArguments="s:Exception">
                                   <ActivityAction.Argument>
                                     <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                                   </ActivityAction.Argument>
-                                  <ui:LogMessage DisplayName="Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Error" Message="[&quot;Fail to retrieve product_type from Transaction Item&quot;]" />
+                                  <ui:LogMessage DisplayName="Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Error" Message="[&quot;Fail to retrieve product_id from Transaction Item&quot;]" />
                                 </ActivityAction>
                               </Catch>
                             </TryCatch.Catches>
@@ -333,7 +275,7 @@
                                               </scg:List>
                                             </ui:SelectItem.Items>
                                             <ui:SelectItem.Target>
-                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="014df488d9f7eb32c524dc84f29f9f36" Selector="[&quot;&lt;html title='Quick Order | Pega Studio Training Web Application' /&gt;&lt;webctrl id='product_quantity&quot;+product_id.ToString+&quot;' tag='SELECT' /&gt;&quot;]" WaitForReady="COMPLETE" />
+                                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="014df488d9f7eb32c524dc84f29f9f36" Selector="[&quot;&lt;html title='Quick Order | Pega Studio Training Web Application' /&gt;&lt;webctrl id='product_quantity&quot;+product_id.ToString+&quot;' tag='SELECT' /&gt;&quot;]" TimeoutMS="1000" WaitForReady="COMPLETE" />
                                             </ui:SelectItem.Target>
                                           </ui:SelectItem>
                                           <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Action Click 'INPUT  login_button'" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
@@ -379,7 +321,6 @@
             </FlowStep.Next>
           </FlowStep>
         </FlowStep.Next>
-        <sap2010:WorkflowViewState.IdRef>FlowStep_14</sap2010:WorkflowViewState.IdRef>
       </FlowStep>
     </Flowchart.StartNode>
     <x:Reference>__ReferenceID0</x:Reference>
@@ -392,7 +333,7 @@
     <x:Reference>__ReferenceID7</x:Reference>
     <x:Reference>__ReferenceID8</x:Reference>
     <x:Reference>__ReferenceID9</x:Reference>
-    <sads:DebugSymbol.Symbol>dzhDOlxSZXZhdHVyZVxQcm9qZWN0c1xQcm9qZWN0M1xCb1Byb2plY3QzXFBvc3RUb0NhcnQueGFtbEFNA4wDDwIBAVoJYhICAUxlDXkdAgFLfBF85AECAUZ+Q35kAgFF9QIZ9QK0AQIBQ4EBGf4BJAIBGYECHasCLQIBGK4CId8CLAIBCuICJeIC8AECAQblAinlAuYBAgECX0JfZgIBTlxDXFECAU18sAF8vQECAUl8zgF84QECAUf1Ao0B9QKxAQIBRIIBG5cBJgIBPJgBG60BJgIBNa4BG8MBJgIBLsQBG9kBJgIBJ9oBG/0BJgIBGq8CI94CNQIBC+ICwAHiAskBAgEJ4gLaAeIC7QECAQflAmTlAnQCAQXlAtAB5QLjAQIBA4QBH4sBKAIBP5MBI5MB1wECAT2aAR+hASgCATipASOpAdoBAgE2sAEftwEoAgExvwEjvwHVAQIBL8YBH80BKAIBKtUBI9UB2wECASjcAR/xASQCAR35ASP5AdcBAgEbrwK6Aq8ChQMCARe1AinbAjQCAQyJAUqJAYQBAgFChgFLhgFZAgFAkwGRAZMB1AECAT6fAUmfAYwBAgE7nAFKnAFbAgE5qQGRAakB1wECATe1AUm1AYcBAgE0sgFKsgFWAgEyvwGRAb8B0gECATDLAUnLAY0BAgEtyAFKyAFcAgEr1QGRAdUB2AECASncAS3cAYsBAgEe3gEj5QEsAgEj6AEj7wEsAgEf+QGRAfkB1AECARy2AivSAjsCARLTAivaAjYCAQ3jAU3jAU4CASbgAU7gAVwCASTtAU3tAU4CASLqAU7qAVwCASC2Au0BtgKKAgIBE9ACvgHQAuwCAgEV2AK+AdgCrwMCARDVAlfVAlsCAQ/VAkrVAk4CAQ4=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzhDOlxSZXZhdHVyZVxQcm9qZWN0c1xQcm9qZWN0M1xCb1Byb2plY3QzXFBvc3RUb0NhcnQueGFtbDFOA9ECDwIBAVsJYhICATllDXkdAgE4fBF85AECATN+Q35kAgEyuwIZuwK0AQIBMIEBGcQBJAIBGscBHfEBLQIBGfQBIaUCLAIBCqgCJagC8AECAQarAimrAuYBAgECYEJgZgIBO11DXVECATp8sAF8vQECATZ8zgF84QECATS7Ao0BuwKxAQIBMYIBG5cBJgIBKZgBG60BJgIBIq4BG8MBJgIBG/UBI6QCNQIBC6gCwAGoAskBAgEJqALaAagC7QECAQerAmSrAnQCAQWrAtABqwLjAQIBA4QBH4sBKAIBLJMBI5MB1wECASqaAR+hASgCASWpASOpAdsBAgEjsAEftwEoAgEevwEjvwHVAQIBHPUBugL1AYUDAgEY+wEpoQI0AgEMiQFKiQGDAQIBL4YBS4YBWQIBLZMBkQGTAdQBAgErnwFJnwGFAQIBKJwBSpwBXAIBJqkBkQGpAdgBAgEktQFJtQF/AgEhsgFKsgFWAgEfvwGRAb8B0gECAR38ASuYAjsCARKZAiugAjYCAQ38Ae0B/AGKAgIBE5YCqQGWAtcCAgEWlgLiApYC6AICARWeAr4BngKvAwIBEJsCV5sCWwIBD5sCSpsCTgIBDg==</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -435,40 +376,6 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="LogMessage_4" sap:VirtualizedContainerService.HintSize="314,91" />
-      <sap2010:ViewStateData Id="Catch`1_2" sap:VirtualizedContainerService.HintSize="404,21">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_2" sap:VirtualizedContainerService.HintSize="527,287">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="LogMessage_5" sap:VirtualizedContainerService.HintSize="314,91" />
-      <sap2010:ViewStateData Id="Catch`1_3" sap:VirtualizedContainerService.HintSize="404,21">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_3" sap:VirtualizedContainerService.HintSize="527,287">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="242,60" />
       <sap2010:ViewStateData Id="LogMessage_6" sap:VirtualizedContainerService.HintSize="314,91" />
       <sap2010:ViewStateData Id="Catch`1_4" sap:VirtualizedContainerService.HintSize="404,21">
@@ -479,18 +386,16 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_4" sap:VirtualizedContainerService.HintSize="527,287">
+      <sap2010:ViewStateData Id="TryCatch_4" sap:VirtualizedContainerService.HintSize="418,287">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="242,60" />
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="509,208" />
-      <sap2010:ViewStateData Id="LogMessage_7" sap:VirtualizedContainerService.HintSize="314,91" />
-      <sap2010:ViewStateData Id="Catch`1_5" sap:VirtualizedContainerService.HintSize="513,21">
+      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="LogMessage_9" sap:VirtualizedContainerService.HintSize="314,91" />
+      <sap2010:ViewStateData Id="Catch`1_7" sap:VirtualizedContainerService.HintSize="404,21">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -498,7 +403,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_5" sap:VirtualizedContainerService.HintSize="527,435">
+      <sap2010:ViewStateData Id="TryCatch_7" sap:VirtualizedContainerService.HintSize="418,287">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -581,7 +486,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="BrowserScope_1" sap:VirtualizedContainerService.HintSize="414,550" />
-      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="436,674">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>

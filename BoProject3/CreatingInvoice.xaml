@@ -55,58 +55,91 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CreatingInvoice" sap2010:WorkflowViewState.IdRef="Sequence_1">
-    <WriteLine DisplayName="Write Line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="Getting email credentials from Orchestrator" />
-    <ui:GetRobotCredential AssetName="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" Username="{x:Null}" DisplayName="Get Credential Email Info" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" />
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="Orders.xlsx">
-      <ui:ExcelApplicationScope.Body>
-        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_2">
-            <WriteLine DisplayName="Write Line" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="Reading Invoice data from spreadsheet, and outputting as a data table." />
-            <ui:ExcelReadRange DataTable="{x:Null}" AddHeaders="True" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Sheet1">
-              <ui:ExcelReadRange.Range>
-                <InArgument x:TypeArguments="x:String">
-                  <Literal x:TypeArguments="x:String" Value="" />
-                </InArgument>
-              </ui:ExcelReadRange.Range>
-            </ui:ExcelReadRange>
+  <Sequence>
+    <ui:CommentOut DisplayName="Comment Out">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities">
+          <Sequence DisplayName="CreatingInvoice" sap2010:WorkflowViewState.IdRef="Sequence_1">
+            <WriteLine DisplayName="Write Line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="Getting email credentials from Orchestrator" />
+            <ui:GetRobotCredential AssetName="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" Username="{x:Null}" DisplayName="Get Credential Email Info" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" />
+            <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="Orders.xlsx">
+              <ui:ExcelApplicationScope.Body>
+                <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <WriteLine DisplayName="Write Line" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="Reading Invoice data from spreadsheet, and outputting as a data table." />
+                    <ui:ExcelReadRange DataTable="{x:Null}" AddHeaders="True" DisplayName="Read Range" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="Sheet1">
+                      <ui:ExcelReadRange.Range>
+                        <InArgument x:TypeArguments="x:String">
+                          <Literal x:TypeArguments="x:String" Value="" />
+                        </InArgument>
+                      </ui:ExcelReadRange.Range>
+                    </ui:ExcelReadRange>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ExcelApplicationScope.Body>
+            </ui:ExcelApplicationScope>
+            <WriteLine DisplayName="Write Line" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="Converting data table to HTML string" />
+            <d:DataTableToHtmlTable CellBGColor="{x:Null}" DataTable="{x:Null}" FontColor="{x:Null}" FontSize="{x:Null}" HeaderBGColor="{x:Null}" Output="{x:Null}" Border="none" DisplayName="Data table to html table" FontStyle="normal" FontWeight="normal" Fonts="Arial" sap2010:WorkflowViewState.IdRef="DataTableToHtmlTable_1" TextAlign="center" />
+            <WriteLine DisplayName="Write Line" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="Sending SMTP Email activity" />
           </Sequence>
-        </ActivityAction>
-      </ui:ExcelApplicationScope.Body>
-    </ui:ExcelApplicationScope>
-    <WriteLine DisplayName="Write Line" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="Converting data table to HTML string" />
-    <d:DataTableToHtmlTable CellBGColor="{x:Null}" DataTable="{x:Null}" FontColor="{x:Null}" FontSize="{x:Null}" HeaderBGColor="{x:Null}" Output="{x:Null}" Border="none" DisplayName="Data table to html table" FontStyle="normal" FontWeight="normal" Fonts="Arial" sap2010:WorkflowViewState.IdRef="DataTableToHtmlTable_1" TextAlign="center" />
-    <WriteLine DisplayName="Write Line" Text="Sending SMTP Email activity" sap2010:WorkflowViewState.IdRef="WriteLine_4" />
-    <sads:DebugSymbol.Symbol>d1JFOlxTdHVmZlxSZXZhdHVyZVxIZXJyb25fUGVyZWlyYV9TeV9Ub3Zhcl9Qcm9qZWN0M1xCb1Byb2plY3QzXENyZWF0aW5nSW52b2ljZS54YW1sEToDVA4CAQE7BTuMAQIBEDwFPM8BAgEPPQVPIAIBB1AFUIUBAgEFUQVR1QICAQRSBVJ8AgECO1w7iQECARE9oAE9rQECAQ5DC0wWAgEIUFxQggECAQZSLlJLAgEDRA1ErwECAQxFDUshAgEJRGRErAECAQ1IE0hCAgELRZ0BRaUBAgEK</sads:DebugSymbol.Symbol>
+          <sap2010:WorkflowViewState.IdRef>Sequence_3</sap2010:WorkflowViewState.IdRef>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap2010:WorkflowViewState.IdRef>CommentOut_1</sap2010:WorkflowViewState.IdRef>
+    </ui:CommentOut>
+    <sap2010:WorkflowViewState.IdRef>Sequence_4</sap2010:WorkflowViewState.IdRef>
+    <sads:DebugSymbol.Symbol>d0xDOlxyZXZhdHVyZVxIZXJyb25fUGVyZWlyYV9TeV9Ub3Zhcl9Qcm9qZWN0M1xCb1Byb2plY3QzXENyZWF0aW5nSW52b2ljZS54YW1sAjoDXw4CAQE7BVwVAgEC</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="414,61" />
+      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="414,62.6666666666667" />
       <sap2010:ViewStateData Id="GetRobotCredential_1" sap:VirtualizedContainerService.HintSize="414,22" />
-      <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="314,61" />
-      <sap2010:ViewStateData Id="ExcelReadRange_1" sap:VirtualizedContainerService.HintSize="314,59" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="336,284">
+      <sap2010:ViewStateData Id="WriteLine_2" sap:VirtualizedContainerService.HintSize="314,62.6666666666667" />
+      <sap2010:ViewStateData Id="ExcelReadRange_1" sap:VirtualizedContainerService.HintSize="314,58.6666666666667" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="336,285.333333333333">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ExcelApplicationScope_1" sap:VirtualizedContainerService.HintSize="414,393" />
-      <sap2010:ViewStateData Id="WriteLine_3" sap:VirtualizedContainerService.HintSize="414,61" />
+      <sap2010:ViewStateData Id="ExcelApplicationScope_1" sap:VirtualizedContainerService.HintSize="414,394" />
+      <sap2010:ViewStateData Id="WriteLine_3" sap:VirtualizedContainerService.HintSize="414,62.6666666666667" />
       <sap2010:ViewStateData Id="DataTableToHtmlTable_1" sap:VirtualizedContainerService.HintSize="414,22" />
-      <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="414,61" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="436,944">
+      <sap2010:ViewStateData Id="WriteLine_4" sap:VirtualizedContainerService.HintSize="414,62.6666666666667" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="436,950">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="CreatingInvoice_1" sap:VirtualizedContainerService.HintSize="476,1024" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="458,1074">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="200,52.6666666666667">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="222,176.666666666667">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CreatingInvoice_1" sap:VirtualizedContainerService.HintSize="262,256.666666666667" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

@@ -195,8 +195,16 @@
             <Variable x:TypeArguments="ui:DatabaseConnection" Name="connection" />
             <Variable x:TypeArguments="x:String" Name="db_query" />
           </Sequence.Variables>
-          <WriteLine DisplayName="Write Line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;INSERT INTO orderhistory (store_name, order_total, products) VALUES ('&quot;+db_store_name+&quot;', &quot;+db_order_total.ToString+&quot;, '&quot;+db_products+&quot;')&quot;]" />
-          <ui:DatabaseConnect DatabaseConnection="[connection]" DisplayName="Connect" sap2010:WorkflowViewState.IdRef="DatabaseConnect_2" ProviderName="System.Data.Odbc" ConnectionString="Dsn=OrdersDB;server=colmeiatech.com.br;uid=admin_polyglots;pwd=thirstylinguistswantdrinks;database=admin_order_process;port=3306" />
+          <ui:CommentOut DisplayName="Comment Out">
+            <ui:CommentOut.Body>
+              <Sequence DisplayName="Ignored Activities">
+                <WriteLine DisplayName="Write Line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;INSERT INTO orderhistory (store_name, order_total, products) VALUES ('&quot;+db_store_name+&quot;', &quot;+db_order_total.ToString+&quot;, '&quot;+db_products+&quot;')&quot;]" />
+                <sap2010:WorkflowViewState.IdRef>Sequence_11</sap2010:WorkflowViewState.IdRef>
+              </Sequence>
+            </ui:CommentOut.Body>
+            <sap2010:WorkflowViewState.IdRef>CommentOut_1</sap2010:WorkflowViewState.IdRef>
+          </ui:CommentOut>
+          <ui:DatabaseConnect DatabaseConnection="[connection]" DisplayName="Connect" sap2010:WorkflowViewState.IdRef="DatabaseConnect_2" ProviderName="System.Data.Odbc" ConnectionString="[&quot;Dsn=OrdersDB;server=&quot;+host+&quot;;uid=&quot;+username+&quot;;pwd=&quot;+password+&quot;;database=&quot;+database+&quot;;port=&quot;+port.ToString]" />
           <ui:ExecuteNonQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" AffectedRecords="[db_affectedRows]" CommandType="Text" DisplayName="Insert into Database" ExistingDbConnection="[connection]" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_3" Sql="[&quot;INSERT INTO orderhistory (store_name, order_total, products) VALUES ('&quot;+db_store_name+&quot;', &quot;+db_order_total.ToString+&quot;, '&quot;+db_products+&quot;')&quot;]">
             <ui:ExecuteNonQuery.Parameters>
               <scg:Dictionary x:TypeArguments="x:String, Argument" />
@@ -220,17 +228,17 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <sads:DebugSymbol.Symbol>dzxDOlxSZXZhdHVyZVxQcm9qZWN0c1xQcm9qZWN0M1xCb1Byb2plY3QzXFVwZGF0ZURhdGFiYXNlLnhhbWw6UgPgAQ4CAQFfBWQdAgFTZQWOARACAT6PAQWWAQ4CATWXAQW7ARACASK8AQXeARACAQJhR2FPAgFWYkRiWQIBVV+xAV/CAQIBVGYHbRACAU9uB3UQAgFLdgd9EAIBR34HhQEQAgFDhgEHjQEQAgE/lAEwlAGcAQIBOJEBMZEBQwIBNpgBB58BEAIBMKABB6cBEAIBK6gBB7oBFwIBI8EBCc8BFAIBCdcBDdoBGAIBA2sya08CAVJoM2g9AgFQczJzTwIBTnAzcD0CAUx7MntLAgFKeDN4OQIBSIMBMYMBRwIBRoABMoABOAIBRIsBMosBTwIBQogBM4gBPQIBQJ0BMp0BQQIBM5oBM5oBQgIBMaUBM6UBQwIBLqIBNKIBRAIBLKgBOKgBSAIBKa4BDbcBGAIBJMYBC8YBnAICAR3HAQvHAcECAgEYyAELzAEgAgEPzQELzQGWAQIBDM4BC84BpwECAQrYAQ/YAcwBAgEG2QEP2QGoAQIBBK8BD7YBGAIBJcYBYsYBmQICAR7HAZgBxwGqAQIBHMcBvAHHAb4CAgEbxwEyxwFAAgEZyAG+AcgBzAECARbIAYUCyAG8AwIBEsgBX8gBcgIBEM0BNc0BQwIBDc4BeM4BpAECAQvYAaQB2AG6AQIBB9kBfdkBpQECAQW0ATq0AW0CASixATuxAUgCASY=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzxDOlxSZXZhdHVyZVxQcm9qZWN0c1xQcm9qZWN0M1xCb1Byb2plY3QzXFVwZGF0ZURhdGFiYXNlLnhhbWw5UgPoAQ4CAQFfBWQdAgFUZQWOARACAT+PAQWWAQ4CATaXAQW7ARACASO8AQXmARACAQJhR2FPAgFXYkRiWQIBVl+xAV/CAQIBVWYHbRACAVBuB3UQAgFMdgd9EAIBSH4HhQEQAgFEhgEHjQEQAgFAlAEwlAGcAQIBOZEBMZEBQwIBN5gBB58BEAIBMaABB6cBEAIBLKgBB7oBFwIBJMEBCdcBFAIBCd8BDeIBGAIBA2sya08CAVNoM2g9AgFRczJzTwIBT3AzcD0CAU17MntLAgFLeDN4OQIBSYMBMYMBRwIBR4ABMoABOAIBRYsBMosBTwIBQ4gBM4gBPQIBQZ0BMp0BQQIBNJoBM5oBQgIBMqUBM6UBQwIBL6IBNKIBRAIBLagBOKgBSAIBKq4BDbcBGAIBJcYBC84BGwIBIs8BC88B3wICARjQAQvUASACAQ/VAQvVAZYBAgEM1gEL1gGnAQIBCuABD+ABzAECAQbhAQ/hAagBAgEErwEPtgEYAgEmzwGYAc8BqgECASHPAbwBzwHcAgIBG88BMs8BQAIBGdABvgHQAcwBAgEW0AGFAtABvAMCARLQAV/QAXICARDVATXVAUMCAQ3WAXjWAaQBAgEL4AGkAeABugECAQfhAX3hAaUBAgEFtAE6tAFtAgEpsQE7sQFIAgEn</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="418,87" />
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="456,87" />
       <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="314,60" />
       <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="314,60" />
       <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="314,60" />
       <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="314,60" />
       <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="314,60" />
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="418,51">
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="456,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -238,7 +246,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="418,60" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="456,60" />
       <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="242,60" />
       <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="242,60" />
       <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="242,60" />
@@ -257,7 +265,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="418,375">
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="456,375">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -265,12 +273,20 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="314,61" />
-      <sap2010:ViewStateData Id="DatabaseConnect_2" sap:VirtualizedContainerService.HintSize="314,59" />
-      <sap2010:ViewStateData Id="ExecuteNonQuery_3" sap:VirtualizedContainerService.HintSize="314,88" />
-      <sap2010:ViewStateData Id="DatabaseDisconnect_2" sap:VirtualizedContainerService.HintSize="314,22" />
-      <sap2010:ViewStateData Id="LogMessage_2" sap:VirtualizedContainerService.HintSize="314,91" />
-      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="336,605">
+      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="210,61" />
+      <sap2010:ViewStateData Id="Sequence_11" sap:VirtualizedContainerService.HintSize="232,185">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="416,263" />
+      <sap2010:ViewStateData Id="DatabaseConnect_2" sap:VirtualizedContainerService.HintSize="416,59" />
+      <sap2010:ViewStateData Id="ExecuteNonQuery_3" sap:VirtualizedContainerService.HintSize="416,88" />
+      <sap2010:ViewStateData Id="DatabaseDisconnect_2" sap:VirtualizedContainerService.HintSize="416,22" />
+      <sap2010:ViewStateData Id="LogMessage_2" sap:VirtualizedContainerService.HintSize="416,91" />
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="438,807">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -294,15 +310,15 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="418,832" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="440,1689">
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="456,1034" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="478,1891">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="UpdateDatabase_1" sap:VirtualizedContainerService.HintSize="480,1769" />
+      <sap2010:ViewStateData Id="UpdateDatabase_1" sap:VirtualizedContainerService.HintSize="518,1971" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

@@ -1,0 +1,14 @@
+{
+    "username" : "",
+    "password" : "",
+    "host" : "",
+    "port" : "",
+    "database" : "",
+    "email": {
+        "email":"",
+        "name":"",
+        "password":"",
+        "server":"",
+        "port":""
+    }
+}

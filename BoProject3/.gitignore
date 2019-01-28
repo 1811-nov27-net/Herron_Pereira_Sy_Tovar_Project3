@@ -1,6 +1,7 @@
 # Configuration files#
 ######################
 connectionstring.txt
+connectionstring.json
 config.txt
 
 # Compiled source #

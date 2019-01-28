@@ -96,6 +96,15 @@
                     </ActivityAction>
                   </ui:BrowserScope.Body>
                 </ui:BrowserScope>
+                <FlowStep.Next>
+                  <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_4">
+                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Test Update Database" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="TestUpdateDatabase.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                  </FlowStep>
+                </FlowStep.Next>
               </FlowStep>
             </FlowStep.Next>
           </FlowStep>
@@ -105,7 +114,8 @@
     <x:Reference>__ReferenceID0</x:Reference>
     <x:Reference>__ReferenceID1</x:Reference>
     <x:Reference>__ReferenceID2</x:Reference>
-    <sads:DebugSymbol.Symbol>dzVDOlxSZXZhdHVyZVxQcm9qZWN0c1xQcm9qZWN0M1xCb1Byb2plY3QzXFRlc3RpbmcueGFtbBQ6A20PAgEBPQlBIQIBE0QNVCUCAQZXEWIjAgECPa8BPcQBAgEUTUpNUQIBElJJUlACARFOR05ZAgEQSEpITgIBD0xLTE8CAQ5KTEpcAgENS01LUQIBDElISUsCAQtEvQFEzAECAQpRRlFNAgEJUElQTAIBCE9IT00CAQdXqAJX5gICAQVdF18iAgEDXhlegAECAQQ=</sads:DebugSymbol.Symbol>
+    <x:Reference>__ReferenceID3</x:Reference>
+    <sads:DebugSymbol.Symbol>dzVDOlxSZXZhdHVyZVxQcm9qZWN0c1xQcm9qZWN0M1xCb1Byb2plY3QzXFRlc3RpbmcueGFtbBY6A3cPAgEBPQlBIQIBFUQNVCUCAQhXEWIjAgEEZRVpLQIBAj2vAT3EAQIBFk1KTVECARRSSVJQAgETTkdOWQIBEkhKSE4CARFMS0xPAgEQSkxKXAIBD0tNS1ECAQ5JSElLAgENRL0BRMwBAgEMUUZRTQIBC1BJUEwCAQpPSE9NAgEJV6gCV+YCAgEHXRdfIgIBBWXBAWXaAQIBA14ZXoABAgEG</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -116,7 +126,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_2" sap:VirtualizedContainerService.HintSize="314,87">
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_2" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -132,11 +142,27 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="BrowserScope_1" sap:VirtualizedContainerService.HintSize="200,51" />
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_3" sap:VirtualizedContainerService.HintSize="314,87">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">0,397.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_3">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">0,296.5</av:Point>
             <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">100,347.5 100,397.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>

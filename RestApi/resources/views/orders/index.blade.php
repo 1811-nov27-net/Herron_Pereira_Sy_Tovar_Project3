@@ -27,7 +27,7 @@
                         <div class='text-center'>
                             <div class='form-group'>
                                 <submit class='btn btn-primary' id='submitSearchOrdersForm'>
-                                    <i class="fas fa-search"></i>
+                                    <i class="fas fa-search fa-lg"></i>
                                 </submit>
                             </div>
                         </div>
@@ -35,25 +35,42 @@
                 </div>
             </div>
 
-            <table class="table table-hovered table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Order Number</th>
-                        <th>Store Name</th>
-                        <th>Order Total</th>
-                        <th>Date</th>
-                        <th>Products</th>
-                    </tr>
-                </thead>
-                <tbody id='tableBody'>
-                    @include('orders._list')
-                </tbody>
-            </table>
+            <form id='sendMailForm' action='{{route('site.orders.send')}}' method='post'>
+                @csrf
+                <div class='row margin text-center'>
+                    <submit class='btn btn-success' id='btn_sendInvoices'>
+                        <i class="far fa-envelope fa-lg"></i> &nbsp;
+                        Send Invoices
+                    </submit>
+                </div>
+
+                <div class="form-group {{ $errors->has('orders') ? 'has-error' :'' }}">
+                    {!! $errors->first('orders','<span class="help-block">:message</span>') !!}
+                </div>
+                
+                @include('layouts._errors');
+
+                <table class="table table-hovered table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th><input type='checkbox' id='selectAllInvoices'></th>
+                            <th>#</th>
+                            <th>Order Number</th>
+                            <th>Store Name</th>
+                            <th>Order Total</th>
+                            <th>Date</th>
+                            <th>Products</th>
+                        </tr>
+                    </thead>
+                    <tbody id='tableBody'>
+                        @include('orders._list')
+                    </tbody>
+                </table>
+            </form>
         </painel>
     </pagina>
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/searchOrders.js') }}"></script>
+    <script src="{{ asset('js/orders.js') }}"></script>
 @endsection

@@ -1,5 +1,14 @@
 @foreach ($orders as $order)
     <tr>
+        <td>
+            <input 
+                type='checkbox' 
+                name='orders[]' 
+                id='order_{{$order->id}}' 
+                class='orderItem form-control' 
+                value='{{$order->id}}'
+            >
+        </td>
         <td>{{$order->id}}</td>
         <td>{{$order->order_number}}</td>
         <td>{{$order->store_name}}</td>

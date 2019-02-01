@@ -19,8 +19,11 @@ Route::group([
     Route::get('/', 'HomeController@index')->name('index');
     Route::get('orders', 'OrdersController@index')->name('orders.index');
     //Search
-    Route::get('orders/search', 'OrdersController@search')->name('orders.searchAll');
-    Route::get('orders/search/{search}', 'OrdersController@search')->name('orders.search');
+    Route::get('/orders/search', 'OrdersController@search')->name('orders.searchAll');
+    Route::get('/orders/search/{search}', 'OrdersController@search')->name('orders.search');
+    
+    //SendMail
+    Route::post('/orders/sendMail', 'OrdersController@send')->name('orders.send');
 });
 
 Auth::routes();

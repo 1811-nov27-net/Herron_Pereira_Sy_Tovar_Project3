@@ -21,3 +21,14 @@ function searchFunction()
 
     $('#search').focus();
 }
+
+$('#btn_sendInvoices').click(function(evt){ 
+    $('#sendMailForm').submit();
+});
+
+$('#selectAllInvoices').change(function(e)
+{
+    checked = $(this).is(':checked');
+    
+    $('.orderItem').prop('checked', checked);
+});
